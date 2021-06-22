@@ -40,9 +40,4 @@ public class Position implements Serializable {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Position [id=" + id + ", name=" + name + "]";
-	}
-	
 }

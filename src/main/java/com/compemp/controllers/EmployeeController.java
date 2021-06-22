@@ -21,7 +21,7 @@ import com.compemp.services.EmployeeService;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-
+	
 	@Autowired
 	private EmployeeService service;
 	
@@ -46,9 +46,9 @@ public class EmployeeController {
 	}
 
 	@GetMapping
-	public List<PositionReponse> search(@RequestParam(value = "position", required = false) String position,
-								 		@RequestParam(value = "name", required = false) String name) {
-		return service.search(position, name);
+	public List<PositionReponse> findByPositionAndName(@RequestParam(value = "position", required = false) String position,
+                                                       @RequestParam(value = "name", required = false) String name) {
+		return service.findByPositionAndName(position, name);
 	}
 	
 }

@@ -17,6 +17,6 @@ public interface EmployeeService extends Serializable {
 
 	public void delete(Long id);
 
-	public List<PositionReponse> search(String position, String name);
+	public List<PositionReponse> findByPositionAndName(String name, String person);
 
 }

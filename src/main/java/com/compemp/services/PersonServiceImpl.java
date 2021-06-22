@@ -1,7 +1,5 @@
 package com.compemp.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +31,9 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	public Person read(Long id) {
-		Optional<Person> person = personRep.findById(id);
-		return person.get();
+		return personRep.findOne(id);
 	}
-
+	
 	public Person update(PersonRequest person, Long id) {
 		return personRep.findById(id).map(newPerson -> {
 			newPerson.setName(person.getName());

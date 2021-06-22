@@ -3,6 +3,7 @@ package com.compemp.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -17,9 +18,9 @@ public class Employee implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Person person;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Position position;
 	private Double salary;
 	
@@ -61,11 +62,6 @@ public class Employee implements Serializable {
 
 	public void setSalary(Double salary) {
 		this.salary = salary;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", person=" + person + ", position=" + position + ", salary=" + salary + "]";
 	}
 	
 }

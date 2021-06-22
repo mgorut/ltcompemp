@@ -79,11 +79,5 @@ public class Person implements Serializable {
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
-
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", lastName=" + lastName + ", address=" + address
-				+ ", cellPhone=" + cellPhone + ", cityName=" + cityName + "]";
-	}
 	
 }

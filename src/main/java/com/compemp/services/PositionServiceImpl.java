@@ -1,8 +1,11 @@
 package com.compemp.services;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.compemp.entities.Position;
@@ -17,8 +20,25 @@ public class PositionServiceImpl implements PositionService {
 	@Autowired
 	private PositionRepository positionRep;
 
+	public List<Position> findAll() {
+		return positionRep.findAll();
+	}
+	
+	public List<Position> findAllByPositionName(@Param("name") String name) {
+		return positionRep.findAllByName(name);
+	}
+	
+	public List<Position> findAllByEmployeeName(@Param("name") String name) {
+		Set<Position> result = positionRep.findAllByEmployeeName(name);
+		return result.stream().collect(Collectors.toList());
+	}
+	
 	public Position findByName(String name) {
 		return positionRep.findByName(name);
+	}
+	
+	public List<Position> findByNameContainingIgnoreCase(String name) {
+		return positionRep.findByNameContainingIgnoreCase(name);
 	}
 	
 	public Position create(PositionRequest position) {
@@ -29,10 +49,9 @@ public class PositionServiceImpl implements PositionService {
 	}
 
 	public Position read(Long id) {
-		Optional<Position> position = positionRep.findById(id);
-		return position.get();
+		return positionRep.findOne(id);
 	}
-
+	
 	public Position update(PositionRequest position, Long id) {
 		return positionRep.findById(id).map(newPosition -> {
 			newPosition.setName(position.getName());
